@@ -11,8 +11,6 @@ import {
   Modal,
 } from 'react-native';
 
-import AsyncStorage from '@react-native-async-storage/async-storage';
-
 import QRCodeScanner from 'react-native-qrcode-scanner';
 import {RNCamera} from 'react-native-camera';
 import axios from 'axios';
@@ -34,28 +32,7 @@ const App = () => {
 
   const [modalVisible, setModalVisible] = useState(false);
 
-  const storeData = async value => {
-    try {
-      await AsyncStorage.setItem('@default_url', value);
-    } catch (e) {
-      // saving error
-    }
-  };
-
-  const getData = async () => {
-    try {
-      const value = await AsyncStorage.getItem('@default_url');
-      if (value !== null) {
-        setAddress(value);
-      }
-    } catch (e) {
-      // error reading value
-    }
-  };
-
-  useEffect(() => {
-    getData();
-  }, []);
+  useEffect(() => {}, []);
 
   const activateScanner = () => {
     setScan(true);

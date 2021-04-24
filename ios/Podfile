@@ -12,6 +12,8 @@ target 'scanner_absen' do
     :hermes_enabled => false
   )
 
+  pod 'RNCAsyncStorage', :path => '../node_modules/@react-native-async-storage/async-storage'
+
   target 'scanner_absenTests' do
     inherit! :complete
     # Pods for testing
