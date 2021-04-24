@@ -15,6 +15,8 @@ import QRCodeScanner from 'react-native-qrcode-scanner';
 import {RNCamera} from 'react-native-camera';
 import axios from 'axios';
 
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 const App = () => {
   const emptyResponse = {
     nim: null,
@@ -32,10 +34,38 @@ const App = () => {
 
   const [modalVisible, setModalVisible] = useState(false);
 
-  useEffect(() => {}, []);
+  const storeData = async value => {
+    try {
+      await AsyncStorage.setItem('@storage_Key', value);
+      console.log('stored to local storage');
+    } catch (e) {
+      // saving error
+    }
+  };
+
+  const getData = async () => {
+    try {
+      const value = await AsyncStorage.getItem('@storage_Key');
+      if (value !== null) {
+        console.log('Storage is not null');
+        // value previously stored
+        setAddress(value);
+      } else {
+        console.log('Storage is null');
+      }
+    } catch (e) {
+      // error reading value
+    }
+  };
+
+  useEffect(() => {
+    getData();
+  }, []);
 
   const activateScanner = () => {
     setScan(true);
+    //Save address to async storage
+    storeData(address);
   };
 
   const closeModal = () => {
