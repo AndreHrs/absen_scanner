@@ -10,7 +10,7 @@
     "lint": "eslint .",
     "emulate": "emulator -avd Nexus_5X_API_29_x86",
     "bundle-android": "./gradlew bundleRelease",
-    "build-apk-android": "react-native run-android --variant=release --no-jetifier",
+    "build-apk-android": "react-native run-android --variant=release",
     "build-android": "cd android && npm run bundle-android && cd .. && npm run build-apk-android"
   },
   "dependencies": {

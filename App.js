@@ -138,7 +138,7 @@ const App = () => {
               KETERANGAN : {responseObj.keterangan}
             </Text>
 
-            {responseObj.sudah_ambil == 1 && (
+            {responseObj.sudah_ambil != 0 && (
               <Text style={styles.sudahAmbil}>
                 SUDAH AMBIL PADA{' '}
                 {new Date(responseObj.updated_at).toLocaleDateString()}
